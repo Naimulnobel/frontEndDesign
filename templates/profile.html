@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% block main %}
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">Core</div>
+                    <a class="nav-link" href="index.html">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Profile
+                    </a>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+
+                    </div>
+        </nav>
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid">
+                <h1 class="mt-4">Profile</h1>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 ">
+                        <!-- Project Card Example -->
+                        <div class="card shadow ">
+                            <div class="card-header py-6">
+                                <h4 class="m-0 font-weight-bold text-primary">Add Personal Info</h4>
+                            </div>
+                            <div class="card-body" align="center">
+                                <form method="POST" id="addCatagory" action="">
+                                    {% csrf_token %}
+                                    <div class="form-group col-md-4">
+                                        <label for="exampleFormControlInput1"
+                                            class="font-weight-bold text-primary">Age</label>
+                                        <input type="number" name="name" class="form-control" placeholder="Enter Age"
+                                            required>
+                                    </div>
+                                    <div class="form-group text-center col-md-4">
+                                        <button class="btn btn-success">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <ol class="breadcrumb mb-4">
+                                <li class="breadcrumb-item active">Education</li>
+                            </ol>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-white">
+                                        <div class="panel-body">
+                                            <div class="row duplicateMe1 ">
+                                                <input type="hidden" name="item" value="0">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+
+                                                        <input type='Text' name="Instituion" required="required"
+                                                            class="form-control " placeholder="Instituion" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type='date' name="yaer" required="required"
+                                                            class="form-control " placeholder="Passing Year" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="number" name="cgpa" required="required"
+                                                            class="form-control " min='0' placeholder="CGPA" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button type="button" class="btn btn-success btn-rounded"
+                                                        style="margin-top: 1px;" id="repeat1"><i
+                                                            class="fa fa-plus"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ol class="breadcrumb mb-4">
+                                <li class="breadcrumb-item active">Work Experiance</li>
+                            </ol>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-white">
+                                        <div class="panel-body">
+                                            <div class="row duplicateMe ">
+                                                <input type="hidden" name="item" value="0">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <br>
+                                                        <input type='Text' name="Instituion" required="required"
+                                                            class="form-control " placeholder="Instituion" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="">From Date</label>
+                                                        <input type='date' name="joing_date" required="required"
+                                                            class="form-control " placeholder="Passing Year" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label for="">To Date</label>
+                                                    <input type='date' name="endOffice_date" required="required"
+                                                        class="form-control " placeholder="Passing Year" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <br>
+                                                    <button type="button" class="btn btn-success btn-rounded"
+                                                        style="margin-top: 1px;" id="repeat"><i
+                                                            class="fa fa-plus"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-table mr-1"></i>
+                                    DataTable Example
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Age</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <th>Nobel</th>
+                                                <th>25</th>
+                                                <th>
+                                                    <a data-id="{{ val.id }}" data-target="#myModal" data-toggle="modal"
+                                                        class="editCatagoryBtn">
+                                                        <button class="btn btn-warning btn-circle">
+                                                            <i class="fas fa-exclamation-triangle"></i>
+                                                        </button>
+                                                    </a>
+                                                </th>
+                                                <th>
+                                                    <a href="" onclick="return confirm('are you sure to delete this?')">
+                                                        <button class="btn btn-danger btn-circle">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </a>
+                                                </th>
+
+                                                </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3>Update Info</h3>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title"></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="post" class="form-sample">
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label"> Age</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="number" name="age" required="required"
+                                                                    class="form-control Name" placeholder=" Name"
+                                                                    value="25" />
+                                                                <input type="hidden" class="Id" name="id">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <button type="submit"
+                                                    class="btn btn-success mr-2 col-md-12">Update</button>
+                                            </form>
+                                        </div>
+        </main>
+
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<div class=container>
+    <div class='row'>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    $('body').on('click', '#repeat1', function () {
+        $duplicate = $('.duplicateMe1');
+
+        $duplicate.find('span').remove();
+
+        var clone = $duplicate.html();
+        $('.duplicateMe1').parent().append('<div class="row duplicateMe1">' + clone + '</div>');
+        $(this).parent().append('<button type="button" class="btn btn-danger" style="margin-top: 1px;" id="remove1"><i class="fa fa-minus"></i></button>');
+        $(this).remove();
+        $duplicate.removeClass('duplicateMe1');
+    });
+
+    // Remove Form data
+    $('body').on('click', '#remove1', function () {
+        $(this).parent().parent().remove();
+    });
+    $('body').on('click', '#repeat', function () {
+        $duplicate = $('.duplicateMe');
+
+        $duplicate.find('span').remove();
+
+        var clone = $duplicate.html();
+        $('.duplicateMe').parent().append('<div class="row duplicateMe">' + clone + '</div>');
+        $(this).parent().append('<button type="button" class="btn btn-danger" style="margin-top: 1px;" id="remove"><i class="fa fa-minus"></i></button>');
+        $(this).remove();
+        $duplicate.removeClass('duplicateMe');
+    });
+    $('body').on('click', '#remove', function () {
+        $(this).parent().parent().remove();
+    });
+</script>
+{% endblock %}
